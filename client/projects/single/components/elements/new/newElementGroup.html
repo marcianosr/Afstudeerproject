@@ -1,0 +1,20 @@
+
+<div class="form-group clearfix new-group-elements">
+    <div class="col-xs-2 no-padding-right">
+        <input type="text" class="form-control" id="element-description" ng-model="elements.description">
+    </div>
+
+    <div class="col-xs-2 no-padding-right">
+        <select name="element-type" class="form-control" id="element-type">
+            <option value="button">button</option>
+            <option value="small-textfield">small textfield</option>
+            <option value="default">default</option>
+        </select>
+    </div>
+
+    <div class="col-xs-7">
+        <input type="text" class="form-control" id="content" ng-model="elements.content">
+    </div>
+
+    <remove-element></remove-element>
+</div>

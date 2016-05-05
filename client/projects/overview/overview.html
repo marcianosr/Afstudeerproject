@@ -1,0 +1,35 @@
+<section class="row projects">
+  <div class="col-xs-10 col-center">
+
+    <header>
+      <h1>Projects overview</h1>
+      <button class="btn btn-default text-right">Nieuw project</button>
+    </header>
+
+    {{projects}}
+    <section ng-repeat="project in overview.projects" class="col-xs-6 no-padding-left">
+
+      <div class="project col-xs-12 no-padding">
+        <div class="title">
+          <img width="80" height="80" src="http://placehold.it/80x80" alt="">
+          <h1>{{project.name}}</h1>
+        </div>
+
+        <div class="environments col-xs-6">
+          <h3>Development</h3>
+          <div class="span12">Version {{project.development[0].version}} </div>
+          <div class="span12">Last updated at: {{project.development[0].last_updated_at}} </div>
+          <div class="span12">Last updated by: {{project.development[0].last_updated_by}} </div>
+        </div>
+
+        <div class="environments col-xs-6">
+          <h3>Production</h3>
+          <div class="span12">Version {{project.production[0].version}} </div>
+          <div class="span12">Last updated at: {{project.production[0].last_updated_at}} </div>
+          <div class="span12">Last updated by: {{project.production[0].last_updated_by}} </div>
+        </div>
+        </div>
+
+    </section>
+  </div>
+</section>

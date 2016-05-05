@@ -1,0 +1,169 @@
+//fonts
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700);
+
+body {
+  font-family: 'Lato';
+  font-weight:300;
+}
+
+// resets
+
+h1, p {
+  margin:0;
+}
+
+header {
+  margin-bottom:25px;
+}
+
+ul {
+  list-style: none;
+
+}
+
+.navbar {
+    min-height: 35px;
+    border-radius: 0;
+
+    ul {
+      margin-top:10px;
+    }
+}
+
+
+.col-center {
+  float:none;
+  margin:0 auto;
+
+}
+
+.no-padding {
+
+    padding: 0;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+// project overview
+
+.projects {
+
+  h1 {
+       display: inline-block;
+       margin:0;
+  }
+
+  header {
+    margin-bottom: 25px;
+  }
+
+  button {
+    float: right;
+    margin-right:15px;
+  }
+
+  .project {
+    background:#E6E7E8;
+    border: 1px solid black;
+    // padding-right:5px;
+    margin-bottom:15px;
+
+    .title {
+      border-bottom: 1px solid black;
+
+
+    }
+
+    .environments {
+        border-right:1px solid black;
+    }
+
+    /* Select all but the first .environments child of .project,
+    * and remove the border from the previous rule.
+      http://stackoverflow.com/questions/2717480/css-selector-for-first-element-with-class/8539107#8539107
+    */
+    .environments ~ .environments {
+        border-right:none;
+    }
+
+
+  }
+
+}
+
+// create new project
+
+.create-new-project {
+
+  label {
+    display: block;
+  }
+  input#language {
+    text-align:center;
+  }
+
+  .form-group {
+      margin-bottom:20px;
+  }
+
+
+}
+
+// single project
+
+.single-project {
+
+    section
+    {
+         hr {
+            border-color:black;
+            margin-top:50px;
+
+         }
+
+        .component {
+          background: #E6E7E8;
+          padding:15px;
+          margin-bottom:15px;
+
+          .title {
+            margin-bottom:20px;
+
+            div {
+              display: inline-block;
+            }
+
+            i {
+                margin-left:10px;
+            }
+          }
+
+          .new-element {
+              margin-top:15px;
+          }
+
+          .form-group {
+
+
+          }
+        }
+
+        .new-component {
+            margin-top:15px;
+        }
+    }
+}
+
+.generators {
+    .title {
+        margin-top: 20px;
+        margin-bottom:20px;
+    }
+}
