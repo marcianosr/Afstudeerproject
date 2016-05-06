@@ -4,7 +4,7 @@ import { Components } from '../../../imports/api/components.js';
 
 (function(){
   angular.module('capitals-prototype')
-  .directive('checkUpdates', function($state, SingleProject) {
+  .directive('saveUpdates', function($state, SingleProject) {
 
     return {
         restrict: 'A',
@@ -33,7 +33,11 @@ import { Components } from '../../../imports/api/components.js';
                               scope.newComponentElementsObj['content'] = $(this).val();
                             });
 
-                            scope.newComponentElements.push(scope.newComponentElementsObj);
+                            console.log(desc)
+                            if(desc) {
+                              scope.newComponentElements.push(scope.newComponentElementsObj);
+
+                            }
 
                       });
                   });

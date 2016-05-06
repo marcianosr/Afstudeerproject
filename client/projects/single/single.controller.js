@@ -3,7 +3,6 @@ import { Projects } from '../../../imports/api/projects.js';
 import { Components } from '../../../imports/api/components.js';
 
 
-
 (function(){
 
   angular.module('capitals-prototype')
@@ -15,8 +14,8 @@ import { Components } from '../../../imports/api/components.js';
 
       $reactive(this).attach($scope);
 
-      var self = this;
-
+      this.subscribe('components');
+      this.subscribe('elements');
 
       this.createNewElement = function(index) {
 
@@ -36,7 +35,6 @@ import { Components } from '../../../imports/api/components.js';
 
 
 
-
       this.removeElement = function(elements) {
 
         console.log('meteor call remove');
@@ -50,30 +48,27 @@ import { Components } from '../../../imports/api/components.js';
 
       }
 
+
+
       this.helpers({
-        projects() {
-          var projects = Projects.findOne({name: 'NGSN'}, {});
-          if(projects) {
-            return projects;
-          }
 
-        },
         components() {
-
             var components = Components.find({projectId: 'DGhrmhamdng5QKfDj'});
 
             if(components) {
               return components;
             }
+        },
 
+        elements() {
+            var elements = Components.find({name: 'Login Screen'}, {});
+
+            if(elements) {
+              return elements;
+            }
         }
 
-
       });
-
-
-
-
   }
 
 })();

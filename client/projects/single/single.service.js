@@ -17,7 +17,10 @@ import { Components } from '../../../imports/api/components.js';
         this.saveNewComponent = function(newComponent) {
             console.log('Service: Save new component')
             console.log(newComponent)
-            Meteor.call('insertComponent', 'DGhrmhamdng5QKfDj', "Nameless Component", newComponent);
+
+            if(newComponent != undefined) {
+              Meteor.call('insertComponent', 'DGhrmhamdng5QKfDj', "Nameless Component", newComponent);
+            }
 
         }
 

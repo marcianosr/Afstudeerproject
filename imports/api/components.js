@@ -2,12 +2,24 @@ import { Mongo } from 'meteor/mongo';
 
 export const Components = new Mongo.Collection('components');
 
-Meteor.methods({
-  getComponents: function(){
+if (Meteor.isServer) {
+
+  Meteor.publish('components', function() {
     var components = Components.find({}, {});
-    console.log('components')
     return components;
-  },
+  });
+
+  Meteor.publish('elements', function() {
+    var elements = Components.find({ name: 'Login Screen'}).map(function(element){
+          console.log(element)
+          return element;
+    });
+
+  });
+
+}
+
+Meteor.methods({
 
   insertComponent: function(projectId, name, elements) {
     console.log('insert new componentss')

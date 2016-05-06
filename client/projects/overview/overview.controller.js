@@ -12,17 +12,12 @@ import { Projects } from '../../../imports/api/projects.js';
       console.log('Controller Project overview');
       $reactive(this).attach($scope);
 
-
-      this.get = function() {
-          console.log('get all projects')
-      }
-
-      this.get();
+      this.subscribe('projects');
 
       this.helpers({
 
         projects() {
-          var projects = Projects.find({});
+          var projects = Projects.find({}, {});
           if(projects) {
             console.log('projects')
 
