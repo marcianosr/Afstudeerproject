@@ -21,13 +21,17 @@ import capitalsPrototype from "../../../../../main.js";
               * BEWARE: Multiple of the same values can still be deleted at once
               */
 
-              $(this).closest('.form-group').css('background', 'red');
+              // $(this).closest('.form-group').css('background', 'red');
+
+
               var elements = [];
+
 
 
               var getElements = $(this).closest('.form-group').find('input').each(function(){
 
                   elements.push($(this).val());
+                  $(this).addClass('pending-removal');
                   return elements;
 
               });

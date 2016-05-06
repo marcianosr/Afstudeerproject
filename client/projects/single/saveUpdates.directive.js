@@ -33,11 +33,7 @@ import { Components } from '../../../imports/api/components.js';
                               scope.newComponentElementsObj['content'] = $(this).val();
                             });
 
-                            console.log(desc)
-                            if(desc) {
-                              scope.newComponentElements.push(scope.newComponentElementsObj);
-
-                            }
+                            scope.newComponentElements.push(scope.newComponentElementsObj);
 
                       });
                   });

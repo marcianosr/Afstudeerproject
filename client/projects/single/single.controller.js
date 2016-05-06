@@ -44,7 +44,7 @@ import { Components } from '../../../imports/api/components.js';
 
         console.log(elements)
 
-        Meteor.call('removeElement', 'DGhrmhamdng5QKfDj', componentId, elements)
+        // Meteor.call('removeElement', 'DGhrmhamdng5QKfDj', componentId, elements)
 
       }
 
