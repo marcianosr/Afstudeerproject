@@ -19,7 +19,6 @@ import capitalsPrototype from "../../../../main.js";
               $scope.getNewComponentName = function(name) {
 
                   console.log(name)
-                  SingleProject.callThisShizzle(name)
                   return $scope.editing = !$scope.editing;
               }
           },

@@ -28,11 +28,7 @@ import capitalsPrototype from "../../../../main.js";
               //find specific component by index and append a new element
               //index comes from the this.createElement(index) func
               $("section[index=" + attrs.index + "] form fieldset").append(elements);
-
-
-
           });
-
 
         }
     }

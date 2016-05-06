@@ -19,7 +19,7 @@ import capitalsPrototype from "../../../../main.js";
 
             var allComponents = $("section.components").find('section.component').length;
 
-            // CODE CAN BE IMPROVED
+
             scope.$watch(allComponents, function () {
 
                   // find the last component and place a new component after the last one
@@ -38,47 +38,36 @@ import capitalsPrototype from "../../../../main.js";
             });
 
 
-
-            // CODE CAN BE IMPROVED
-
-            $('.save-project').on('click', function(){
-                  $(elements).each(function(i, element){
-
-                    scope.newElementsArr = [];
-                    console.log('loop test')
-                    console.log($(element).find($('.form-group')))
-                    $(element).find($('.form-group')).each(function(){
-
-                        console.log($(this))
-                        scope.newElementsObj = {};
-
-                          var desc = $(this).find('input#element-description').each(function(i, element){
-                            scope.newElementsObj['description'] = $(this).val();
-                            console.log(scope.newElementsObj.description)
-
-                          });
-
-                          var content = $(this).find('input#content').each(function(i, element){
-                            scope.newElementsObj['content'] = $(this).val();
-                          });
-
-
-                          scope.newElementsArr.push(scope.newElementsObj);
-
-                      });
-
-
-                      console.log('create new component in directive')
-                      console.log(scope.newElementsArr)
-
-                });
-
-                // scope.single.saveNewComponent(scope.newElementsArr);
-
-                SingleProject.checkAllChanges('newComponent', scope.newElementsArr);
-
-
-            });
+            // $('.save-project').on('click', function(){
+            //
+            //     console.log('click from new Component')
+            //     $(elements).each(function(i, element){
+            //
+            //         scope.newElementsArr = [];
+            //
+            //         $(element).find($('.form-group')).each(function(){
+            //
+            //             scope.newElementsObj = {};
+            //
+            //               var desc = $(this).find('input#element-description').each(function(i, element){
+            //                 scope.newElementsObj['description'] = $(this).val();
+            //               });
+            //
+            //               var content = $(this).find('input#content').each(function(i, element){
+            //                 scope.newElementsObj['content'] = $(this).val();
+            //               });
+            //
+            //               scope.newElementsArr.push(scope.newElementsObj);
+            //
+            //         });
+            //
+            //           console.log('create new component in directive')
+            //     });
+            //
+            //     // scope.single.saveNewComponent(scope.newElementsArr);
+            //
+            //     SingleProject.saveNewComponent(scope.newElementsArr);
+            // });
 
           },
 
