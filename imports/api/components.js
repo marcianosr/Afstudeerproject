@@ -11,7 +11,7 @@ if (Meteor.isServer) {
 
   Meteor.publish('elements', function() {
     var elements = Components.find({ name: 'Login Screen'}).map(function(element){
-          console.log(element)
+          // console.log(element)
           return element;
     });
 

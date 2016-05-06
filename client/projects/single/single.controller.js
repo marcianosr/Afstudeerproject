@@ -39,6 +39,8 @@ import { Components } from '../../../imports/api/components.js';
 
         console.log('meteor call remove');
 
+        $scope.pending = !$scope.pending;
+
         // GET COMPONENT ID FROM ARRAY : POSITION [2] CAN BE CHANGED DUE TO 'SELECT' DROPDOWN!!!
         var componentId = elements[2];
 

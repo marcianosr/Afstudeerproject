@@ -1,0 +1,9 @@
+
+<div class="col-xs-1">
+  {{pending}}
+  <i ng-if="!pending" class="fa fa-times fa-2x remove" ng-click="removeEl()" aria-hidden="true">
+  </i>
+
+  <i ng-if="pending" class="fa fa-undo fa-2x redo" aria-hidden="true">
+  </i>
+</div>

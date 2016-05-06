@@ -7,11 +7,12 @@ import capitalsPrototype from "../../../../../main.js";
         restrict: 'E',
         replace:true,
         scope: {
-          removeEl: "&"
+          removeEl: "&",
+          pending: "=",
         },
         controller: "SingleProject",
         controllerAs: "single",
-        template:'<div class="col-xs-1"><i class="fa fa-times fa-2x remove" ng-click="removeEl()" aria-hidden="true"></i></div>',
+        templateUrl: 'client/projects/single/components/elements/remove/removeElement.html',
         link: function(scope, element, attrs) {
 
 
@@ -20,18 +21,20 @@ import capitalsPrototype from "../../../../../main.js";
               /*
               * BEWARE: Multiple of the same values can still be deleted at once
               */
+              var inputs = $(this).closest('.form-group').find('input');
 
-              // $(this).closest('.form-group').css('background', 'red');
-
+              if (scope.pending) {
+                inputs.removeClass('pending-removal')
+              }
+              else {
+                inputs.addClass('pending-removal');
+              }
 
               var elements = [];
-
-
 
               var getElements = $(this).closest('.form-group').find('input').each(function(){
 
                   elements.push($(this).val());
-                  $(this).addClass('pending-removal');
                   return elements;
 
               });
@@ -42,7 +45,10 @@ import capitalsPrototype from "../../../../../main.js";
 
               if (componentId) {
                 // then there we take fields from an existing component
-                scope.single.removeElement(elements);
+                scope.$apply(function(){
+                    scope.single.removeElement(elements);
+                });
+
               }
 
               if (!componentId) {
