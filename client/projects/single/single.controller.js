@@ -8,12 +8,16 @@ import { Components } from '../../../imports/api/components.js';
   angular.module('capitals-prototype')
   .controller('SingleProject', __singleProject);
 
-  function __singleProject($scope, $meteor, $reactive, $compile, $state, SingleProject) {
+  function __singleProject($scope, $meteor, $reactive, $compile, $state, $stateParams, SingleProject) {
 
       // console.log('Controller Single project');
 
+
+  //    console.log($stateParams)
+
       $reactive(this).attach($scope);
 
+      this.subscribe('projects');
       this.subscribe('components');
       this.subscribe('elements');
 
@@ -35,28 +39,26 @@ import { Components } from '../../../imports/api/components.js';
 
 
 
-      this.removeElement = function(elements) {
-
-        console.log('meteor call remove');
-
-        $scope.pending = !$scope.pending;
-
-        // GET COMPONENT ID FROM ARRAY : POSITION [2] CAN BE CHANGED DUE TO 'SELECT' DROPDOWN!!!
-        var componentId = elements[2];
-
-        console.log(elements)
-
-        // Meteor.call('removeElement', 'DGhrmhamdng5QKfDj', componentId, elements)
-
-      }
-
 
 
       this.helpers({
 
-        components() {
-            var components = Components.find({projectId: 'DGhrmhamdng5QKfDj'});
+        projects() {
+          var projects = Projects.findOne({ slug: $stateParams.slug }, {});
+          if(projects) {
+            // console.log('projects')
+            //
+             console.log(projects)
+             this.projectId = projects._id;
+            return projects;
+          }
 
+        },
+
+        components() {
+            var components = Components.find({projectId: 'XC7AEf25Wvbrh3gen'});
+            console.log('load components:  ')
+            console.log(this.projectId)
             if(components) {
               return components;
             }

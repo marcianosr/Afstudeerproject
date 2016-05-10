@@ -10,8 +10,25 @@ import capitalsPrototype from "../../../../../main.js";
           removeEl: "&",
           pending: "=",
         },
-        controller: "SingleProject",
-        controllerAs: "single",
+        controller: function($scope) {
+
+            $scope.removeElement = function(elements) {
+
+              console.log('meteor call remove');
+
+              $scope.pending = !$scope.pending;
+
+              // GET COMPONENT ID FROM ARRAY : POSITION [2] CAN BE CHANGED DUE TO 'SELECT' DROPDOWN!!!
+              var componentId = elements[2];
+
+              console.log(elements)
+
+              // Meteor.call('removeElement', 'XC7AEf25Wvbrh3gen', componentId, elements)
+
+            }
+        },
+        // controller: "SingleProject",
+        // controllerAs: "single",
         templateUrl: 'client/projects/single/components/elements/remove/removeElement.html',
         link: function(scope, element, attrs) {
 
@@ -46,7 +63,7 @@ import capitalsPrototype from "../../../../../main.js";
               if (componentId) {
                 // then there we take fields from an existing component
                 scope.$apply(function(){
-                    scope.single.removeElement(elements);
+                    scope.removeElement(elements);
                 });
 
               }
