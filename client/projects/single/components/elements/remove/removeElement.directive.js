@@ -1,4 +1,5 @@
 import capitalsPrototype from "../../../../../main.js";
+import { Projects } from '/imports/api/projects.js';
 
 (function(){
   angular.module('capitals-prototype')
@@ -10,11 +11,14 @@ import capitalsPrototype from "../../../../../main.js";
           removeEl: "&",
           pending: "=",
         },
-        controller: function($scope) {
+        controller: function($scope, $reactive, $stateParams) {
 
             $scope.removeElement = function(elements) {
 
               console.log('meteor call remove');
+
+              this.projects = Projects.findOne({ slug: $stateParams.slug })
+
 
               $scope.pending = !$scope.pending;
 
@@ -23,7 +27,8 @@ import capitalsPrototype from "../../../../../main.js";
 
               console.log(elements)
 
-              // Meteor.call('removeElement', 'XC7AEf25Wvbrh3gen', componentId, elements)
+              // Meteor.call('removeElement', this.projects._id, componentId, elements)
+
 
             }
         },

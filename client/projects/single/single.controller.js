@@ -8,7 +8,7 @@ import { Components } from '../../../imports/api/components.js';
   angular.module('capitals-prototype')
   .controller('SingleProject', __singleProject);
 
-  function __singleProject($scope, $meteor, $reactive, $compile, $state, $stateParams) {
+  function __singleProject($scope, $reactive, $compile, $state, $stateParams) {
 
       console.log('Controller Single project');
       $reactive(this).attach($scope);

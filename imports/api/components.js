@@ -9,14 +9,6 @@ if (Meteor.isServer) {
     return components;
   });
 
-  Meteor.publish('elements', function() {
-    var elements = Components.find({ name: 'Login Screen'}).map(function(element){
-          // console.log(element)
-          return element;
-    });
-
-  });
-
 }
 
 Meteor.methods({
@@ -56,6 +48,7 @@ Meteor.methods({
   removeElement: function(projectId, componentId, elements) {
     console.log('remove')
     console.log(elements)
+    console.log(projectId)
     Components.update({ projectId: projectId, _id: componentId }, {$pull: { "elements": { "description": elements[0] }}})
   },
 
