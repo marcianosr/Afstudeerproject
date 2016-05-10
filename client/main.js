@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
+
 (function(){
 
   angular.module('capitals-prototype', [
@@ -29,6 +30,9 @@ import uiRouter from 'angular-ui-router';
         .state('single-project/:slug', {
             url: '/single-project/:slug',
             templateUrl: 'client/projects/single/single.html',
+            params: {
+                projectId: "test"
+            },
             controller: 'SingleProject',
             controllerAs: 'single'
         })

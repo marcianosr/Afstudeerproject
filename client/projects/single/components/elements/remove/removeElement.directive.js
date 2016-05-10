@@ -17,7 +17,7 @@ import { Projects } from '/imports/api/projects.js';
 
               console.log('meteor call remove');
 
-              this.projects = Projects.findOne({ slug: $stateParams.slug })
+              $scope.projects = Projects.findOne({ slug: $stateParams.slug })
 
 
               $scope.pending = !$scope.pending;
@@ -27,7 +27,7 @@ import { Projects } from '/imports/api/projects.js';
 
               console.log(elements)
 
-              // Meteor.call('removeElement', this.projects._id, componentId, elements)
+              // Meteor.call('removeElement', $scope.projects._id, componentId, elements)
 
 
             }

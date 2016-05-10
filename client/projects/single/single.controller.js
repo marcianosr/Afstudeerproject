@@ -52,9 +52,7 @@ import { Components } from '../../../imports/api/components.js';
           Meteor.call('insertElement', element);
       }
 
-      this.changeComponentName = function(name, componentId) {
-          // Meteor.call('changeComponentName', this.getReactively('projectId'), componentId, name)
-      }
+    
 
       this.helpers({
 

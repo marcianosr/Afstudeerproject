@@ -1,4 +1,5 @@
 import capitalsPrototype from "../../../../main.js";
+import { Projects } from '/imports/api/projects.js';
 
 (function(){
   angular.module('capitals-prototype')
@@ -11,15 +12,27 @@ import capitalsPrototype from "../../../../main.js";
             name: "@",
           },
           restrict: 'E',
-          controller: function($scope) {
+          controller: function($scope, $stateParams) {
 
               $scope.editing = false;
+
+              console.log($stateParams)
+
+              $scope.projects = Projects.findOne({ slug: $stateParams.slug });
+
+
+              $scope.changeComponentName = function(name, componentId) {
+
+                  console.log($stateParams)
+                  Meteor.call('changeComponentName', $scope.projects._id, componentId, name)
+              }
 
               $scope.getNewComponentName = function(name, componentId) {
 
                   console.log(name)
                   console.log(componentId)
-                  // SingleProject.changeComponentName(name, componentId)
+
+                  $scope.changeComponentName(name, componentId)
                   return $scope.editing = !$scope.editing;
               }
           },
@@ -30,9 +43,11 @@ import capitalsPrototype from "../../../../main.js";
 
                 var componentId = $(elements).parent('section.component').attr('componentId');
 
-                console.log(e.target)
-                if (e.target == document.querySelector("input")) {
+                console.log($(e.target))
+                console.log(document.querySelector("input.component-name"))
+                if ((e.target).nodeName == "INPUT") {
                   console.log('you clicked input');
+
                   return;
                 }
 

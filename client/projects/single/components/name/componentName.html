@@ -17,19 +17,19 @@
     <i class="fa fa-pencil fa-2x" aria-hidden="true" ng-click="single.editing = !single.editing"></i>
 </div> -->
 
-<!-- {{changeComponentName}}
-{{editing}} -->
+<!-- {{changeComponentName}} -->
+{{editing}}
 <div class="title">
     <div ng-show="name">
       <h1 ng-hide="editing">{{name}}</h1>
       <div ng-show="editing" class="input-edit-field">
-        <input type="text" id="component-name" value="{{name}}">
+        <input type="text" class="form-control component-name" id="component-name" value="{{name}}">
       </div>
     </div>
     <div ng-show="!name">
       <h1 ng-hide="editing">Nameless Component</h1>
       <div ng-show="editing" class="input-edit-field">
-        <input type="text" id="component-name" value="Nameless Component">
+        <input type="text" class="form-control component-name" id="component-name" value="Nameless Component">
       </div>
     </div>
 
