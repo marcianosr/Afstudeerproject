@@ -21,6 +21,10 @@ if (Meteor.isServer) {
 
 Meteor.methods({
 
+  changeComponentName: function(projectId, componentId, name) {
+      Components.update({ projectId: projectId, _id: componentId }, { $set: { name: name }})
+  },
+
   insertComponent: function(projectId, name, elements) {
     console.log('insert new componentss')
     Components.insert({ projectId: projectId, name: name, elements: elements})

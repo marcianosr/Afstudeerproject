@@ -2,7 +2,7 @@ import capitalsPrototype from "../../../../main.js";
 
 (function(){
   angular.module('capitals-prototype')
-  .directive('elementGroup', function(SingleProject) {
+  .directive('elementGroup', function() {
     console.log('init element-group')
     return {
         templateUrl: function(element, attrs) {

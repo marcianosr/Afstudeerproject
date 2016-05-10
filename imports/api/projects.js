@@ -11,7 +11,22 @@ if(Meteor.isServer) {
 
 }
 
-
+// if(Meteor.isServer) {
+//   Meteor.publish('projects', {
+//     find:function() {
+//
+//       return Projects.find({}, {});
+//     },
+//   children: [{
+//       find: function(project) {
+//
+//           return Components.find({ projectId: project._id})
+//       }
+//   }]
+//
+// });
+//
+// }
 
 
 // console.log('server api')

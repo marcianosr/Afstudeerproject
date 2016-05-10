@@ -8,18 +8,17 @@ import { Components } from '../../../imports/api/components.js';
   angular.module('capitals-prototype')
   .controller('SingleProject', __singleProject);
 
-  function __singleProject($scope, $meteor, $reactive, $compile, $state, $stateParams, SingleProject) {
+  function __singleProject($scope, $meteor, $reactive, $compile, $state, $stateParams) {
 
-      // console.log('Controller Single project');
-
-
-  //    console.log($stateParams)
-
+      console.log('Controller Single project');
       $reactive(this).attach($scope);
 
       this.subscribe('projects');
       this.subscribe('components');
-      this.subscribe('elements');
+
+      this.saveProject = function() {
+          $state.reload();
+      }
 
       this.createNewElement = function(index) {
 
@@ -37,41 +36,51 @@ import { Components } from '../../../imports/api/components.js';
           var component = $compile("<new-component></new-component>")($scope);
       }
 
+      this.saveNewComponent = function(newComponent) {
+          console.log('Service: Save new component')
+          console.log(newComponent)
 
+          if(newComponent != undefined) {
+            Meteor.call('insertComponent', this.getReactively('projectId'), "Nameless Component", newComponent);
+          }
 
+      }
 
+      this.saveNewCreatedElements = function(element) {
+          console.log(element);
+          console.log('Service: Insert a new element')
+          Meteor.call('insertElement', element);
+      }
+
+      this.changeComponentName = function(name, componentId) {
+          // Meteor.call('changeComponentName', this.getReactively('projectId'), componentId, name)
+      }
 
       this.helpers({
 
         projects() {
           var projects = Projects.findOne({ slug: $stateParams.slug }, {});
+
           if(projects) {
-            // console.log('projects')
-            //
-             console.log(projects)
-             this.projectId = projects._id;
+            console.log(projects)
+
+            this.projectId = projects._id;
+            this.slug = projects.slug;
+
             return projects;
           }
 
         },
 
         components() {
-            var components = Components.find({projectId: 'XC7AEf25Wvbrh3gen'});
-            console.log('load components:  ')
-            console.log(this.projectId)
+          // console.log(this.projectId)
+
+            var components = Components.find({projectId: this.getReactively('projectId')});
+
             if(components) {
               return components;
             }
-        },
-
-        elements() {
-            var elements = Components.find({name: 'Login Screen'}, {});
-
-            if(elements) {
-              return elements;
-            }
         }
-
       });
   }
 

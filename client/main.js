@@ -26,8 +26,8 @@ import uiRouter from 'angular-ui-router';
             url: '/create-project',
             templateUrl: 'client/projects/create/create.html'
         })
-        .state('single-project', {
-            url: '/single-project',
+        .state('single-project/:slug', {
+            url: '/single-project/:slug',
             templateUrl: 'client/projects/single/single.html',
             controller: 'SingleProject',
             controllerAs: 'single'

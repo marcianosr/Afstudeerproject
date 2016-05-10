@@ -5,8 +5,8 @@ import { Components } from '../imports/api/components.js';
 
 Meteor.startup(() => {
   // code to run on server at startup
-    // console.log('insert projects')
-    // console.log(Projects.find().count())
+    console.log('insert projects')
+    console.log(Projects.find().count())
     if(Projects.find().count() === 0) {
 
       Projects.insert({
@@ -14,9 +14,9 @@ Meteor.startup(() => {
           name: 'NGSN',
           icon: '/',
           development:
-            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Killua Zoldyck' }],
+            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Semir' }],
           production:
-            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Illumi Zoldyck' }]
+            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Semir' }]
 
       });
 
@@ -25,9 +25,9 @@ Meteor.startup(() => {
           name: 'Amsterdam ArenA',
           icon: '/',
           development:
-            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Killua Zoldyck' }],
+            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Toby' }],
           production:
-            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Illumi Zoldyck' }]
+            [{ version: 0.1, last_updated_at: '13/05/2016', last_updated_by: 'Donald' }]
 
       });
     }

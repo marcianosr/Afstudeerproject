@@ -4,7 +4,7 @@ import capitalsPrototype from "../../../../main.js";
   angular.module('capitals-prototype')
   .directive('newComponent', newComponent);
 
-  function newComponent(SingleProject) {
+  function newComponent() {
       return {
           templateUrl: 'client/projects/single/components/new/newComponent.html',
           restrict: 'E',

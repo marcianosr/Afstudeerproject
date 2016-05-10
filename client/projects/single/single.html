@@ -12,6 +12,9 @@
         projects___:  {{projects}} -->
 
         <!-- {{single.elements}} -->
+
+      <!-- {{single}} -->
+
         <h1>{{single.projects.name}}</h1>
         <span>Editing in language:</span>
         <select name="languages" id="languages">
@@ -21,7 +24,7 @@
       </div>
 
       <div class="col-xs-2 text-right">
-            <button class="save-project" save-updates>Save Project</button>
+            <button class="save-project" save-updates ng-click="single.saveProject()">Save Project</button>
             <p>Version 0.1</p>
       </div>
 
@@ -42,7 +45,7 @@
       <!-- {{single.components}} -->
 
           <section class="component old-component col-xs-12" ng-repeat="component in single.components" index="{{$index}}" componentId="{{component._id}}">
-            {{$index}}
+            <!-- {{$index}} -->
 
             <component-name name="{{component.name}}"></component-name>
 

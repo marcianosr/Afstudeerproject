@@ -6,9 +6,10 @@
       <button class="btn btn-default text-right">Nieuw project</button>
     </header>
 
-    {{projects}}
-    <section ng-repeat="project in overview.projects" class="col-xs-6 no-padding-left">
 
+
+    <section ng-repeat="project in overview.projects" class="col-xs-6 no-padding-left">
+      <a href="single-project/{{project.slug}}">{{project.slug}}</a>
       <div class="project col-xs-12 no-padding">
         <div class="title">
           <img width="80" height="80" src="http://placehold.it/80x80" alt="">

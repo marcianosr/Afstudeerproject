@@ -4,15 +4,14 @@ import { Components } from '../../../imports/api/components.js';
 
 (function(){
   angular.module('capitals-prototype')
-  .directive('saveUpdates', function($state, SingleProject) {
+  .directive('saveUpdates', function() {
 
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-
+          console.log('access scope')
+          console.log(scope)
           $(element).on('click', function(){
-
-                  $state.go('single-project', {}, {reload: true});
 
                   $('section.new-component').each(function(i, element){
 
@@ -67,11 +66,12 @@ import { Components } from '../../../imports/api/components.js';
 
                       var componentId = $(element).attr('componentId');
 
-                      var getComponentsOfDB = Components.findOne({projectId: "DGhrmhamdng5QKfDj", _id: componentId }, {});
+                      var getComponentsOfDB = Components.findOne({projectId: scope.single.projectId, _id: componentId }, {});
 
                       var descriptions = $(element).find('input#element-description').each(function(i, element){
 
                           if (getComponentsOfDB.elements[i] != undefined) {
+
                                 Meteor.call('updateElement', componentId, 'description', getComponentsOfDB.elements[i].description, 'description', $(element).val())
                           }
                       });
@@ -84,8 +84,8 @@ import { Components } from '../../../imports/api/components.js';
                       });
                   });
 
-                  SingleProject.saveNewComponent(scope.newComponentElements);
-                  SingleProject.saveNewCreatedElements(scope.newElementsArr);
+                  scope.single.saveNewComponent(scope.newComponentElements);
+                  scope.single.saveNewCreatedElements(scope.newElementsArr);
 
           });
 

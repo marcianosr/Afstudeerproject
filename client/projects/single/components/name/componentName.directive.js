@@ -4,7 +4,7 @@ import capitalsPrototype from "../../../../main.js";
   angular.module('capitals-prototype')
   .directive('componentName', componentName);
 
-  function componentName(SingleProject) {
+  function componentName() {
       return {
           templateUrl: 'client/projects/single/components/name/componentName.html',
           scope: {
@@ -12,22 +12,26 @@ import capitalsPrototype from "../../../../main.js";
           },
           restrict: 'E',
           controller: function($scope) {
-              // console.log("changeComponentName")
 
               $scope.editing = false;
 
-              $scope.getNewComponentName = function(name) {
+              $scope.getNewComponentName = function(name, componentId) {
 
                   console.log(name)
+                  console.log(componentId)
+                  // SingleProject.changeComponentName(name, componentId)
                   return $scope.editing = !$scope.editing;
               }
           },
           controllerAs: "changeComponentName",
           link: function(scope, elements, attrs) {
-
+            console.log(scope)
             $(elements).find($('.title')).on('click', function(e){
 
-                if (e.target != this && e.target == document.querySelector("input")) {
+                var componentId = $(elements).parent('section.component').attr('componentId');
+
+                console.log(e.target)
+                if (e.target == document.querySelector("input")) {
                   console.log('you clicked input');
                   return;
                 }
@@ -36,7 +40,7 @@ import capitalsPrototype from "../../../../main.js";
 
                 scope.$apply(function(){
 
-                  scope.getNewComponentName(getNewName);
+                  scope.getNewComponentName(getNewName, componentId);
 
                 });
             });
