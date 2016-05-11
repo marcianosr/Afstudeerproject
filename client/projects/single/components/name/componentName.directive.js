@@ -20,6 +20,8 @@ import { Projects } from '/imports/api/projects.js';
 
               $scope.projects = Projects.findOne({ slug: $stateParams.slug });
 
+              $scope.componentName = "Nameless Component";
+
 
               $scope.changeComponentName = function(name, componentId) {
 
@@ -27,38 +29,53 @@ import { Projects } from '/imports/api/projects.js';
                   Meteor.call('changeComponentName', $scope.projects._id, componentId, name)
               }
 
-              $scope.getNewComponentName = function(name, componentId) {
-
-                  console.log(name)
-                  console.log(componentId)
-
-                  $scope.changeComponentName(name, componentId)
+              $scope.toggle = function() {
                   return $scope.editing = !$scope.editing;
+              }
+
+              $scope.setNewComponentName = function(name, componentId) {
+
+                  // console.log(name)
+                  // console.log(componentId)
+                  //
+                  $scope.changeComponentName(name, componentId)
+
+                  $scope.toggle();
+                  $scope.componentName = name;
+
               }
           },
           controllerAs: "changeComponentName",
           link: function(scope, elements, attrs) {
-            console.log(scope)
-            $(elements).find($('.title')).on('click', function(e){
 
-                var componentId = $(elements).parent('section.component').attr('componentId');
+            scope.$watch(elements, function(){
+                $(elements).find($('.title')).on('click', function(e){
 
-                console.log($(e.target))
-                console.log(document.querySelector("input.component-name"))
-                if ((e.target).nodeName == "INPUT") {
-                  console.log('you clicked input');
+                    var componentId = $(elements).parent('section.component').attr('componentId');
 
-                  return;
-                }
+                    // if user clicks on input, then do not call $scope.toggle()
+                    if ((e.target).nodeName == "INPUT") {
+                        console.log('you clicked input');
+                        return;
+                    }
 
-                var getNewName = $(this).find($("input#component-name")).val();
+                    var name = $(this).find($("input.component-name")).val();
 
-                scope.$apply(function(){
+                    // if name has been filled in yet, grab the existing out of the h1
+                    if (name == undefined) {
+                        name = $(this).find($("h1.component-name")).text();
+                    }
 
-                  scope.getNewComponentName(getNewName, componentId);
+                    // check if binding values have changed, in this case input
+                    // http://jimhoskins.com/2012/12/17/angularjs-and-apply.html
+                    scope.$apply(function(){
+                      scope.setNewComponentName(name, componentId);
+                    })
 
-                });
+              });
+
             });
+
 
           }
 

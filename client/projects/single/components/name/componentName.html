@@ -20,16 +20,28 @@
 <!-- {{changeComponentName}} -->
 {{editing}}
 <div class="title">
-    <div ng-show="name">
-      <h1 ng-hide="editing">{{name}}</h1>
-      <div ng-show="editing" class="input-edit-field">
-        <input type="text" class="form-control component-name" id="component-name" value="{{name}}">
+    <div ng-if="name">
+      <h1 ng-if="!editing">{{name}}</h1>
+      <div ng-if="editing" class="input-edit-field">
+        <input type="text" class="form-control component-name" value="{{name}}">
       </div>
     </div>
-    <div ng-show="!name">
-      <h1 ng-hide="editing">Nameless Component</h1>
-      <div ng-show="editing" class="input-edit-field">
-        <input type="text" class="form-control component-name" id="component-name" value="Nameless Component">
+    <div ng-if="!name">
+      <div ng-if="!editing">
+          <h1 class="component-name" ng-if="componentName">
+              {{componentName}}
+          </h1>
+      </div>
+
+      <div ng-if="editing" class="input-edit-field">
+        <!-- <div ng-if="componentName">
+          <input type="text" class="form-control component-name" value="{{componentName}}">
+        </div> -->
+
+
+          <input type="text" class="form-control component-name" value="{{componentName}}">
+
+
       </div>
     </div>
 
