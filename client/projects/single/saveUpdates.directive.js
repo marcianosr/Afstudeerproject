@@ -9,39 +9,44 @@ import { Components } from '../../../imports/api/components.js';
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-          console.log('access scope')
-          console.log(scope)
+
           $(element).on('click', function(){
+
+                  scope.names = [];
 
                   $('section.new-component').each(function(i, element){
 
                       scope.newComponentElements = [];
 
-                      scope.name = $(this).find($('.title').find($('h1'))).text();
-                      console.log('scope.name')
-                      // console.log($(this).find($('.title').find($('h1'))))
-                      console.log(scope.name)
+                      scope.namesObj = {};
+
+                      var names = $(this).find($('.title').find($('h1'))).each(function(i, element){
+                        scope.names.push($(element).text())
+                        scope.namesObj = $(element).text();
+                      });
 
                       $(element).find($('.form-group')).each(function(){
 
-
                           scope.newComponentElementsObj = {};
-
-
 
                             var desc = $(this).find('input#element-description').each(function(i, element){
                               scope.newComponentElementsObj['description'] = $(this).val();
-                              console.log(scope.newComponentElementsObj.description)
-
                             });
 
                             var content = $(this).find('input#content').each(function(i, element){
                               scope.newComponentElementsObj['content'] = $(this).val();
                             });
 
+
                             scope.newComponentElements.push(scope.newComponentElementsObj);
 
                       });
+
+                      scope.newComponentElementsObj['name'] = scope.names[i];
+
+
+                      scope.single.saveNewComponent(scope.namesObj, scope.newComponentElements);
+
                   });
 
                   scope.newElementsArr = [];
@@ -91,7 +96,6 @@ import { Components } from '../../../imports/api/components.js';
                       });
                   });
 
-                  scope.single.saveNewComponent(scope.name, scope.newComponentElements);
                   scope.single.saveNewCreatedElements(scope.newElementsArr);
 
           });

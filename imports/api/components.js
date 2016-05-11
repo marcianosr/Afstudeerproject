@@ -20,6 +20,7 @@ Meteor.methods({
   insertComponent: function(projectId, name, elements) {
     console.log('insert new componentss')
     console.log(name)
+    console.log(elements)
     Components.insert({ projectId: projectId, name: name, elements: elements})
   },
 
