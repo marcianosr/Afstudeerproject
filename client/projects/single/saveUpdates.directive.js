@@ -17,10 +17,17 @@ import { Components } from '../../../imports/api/components.js';
 
                       scope.newComponentElements = [];
 
+                      scope.name = $(this).find($('.title').find($('h1'))).text();
+                      console.log('scope.name')
+                      // console.log($(this).find($('.title').find($('h1'))))
+                      console.log(scope.name)
+
                       $(element).find($('.form-group')).each(function(){
 
-                          console.log($(this))
+
                           scope.newComponentElementsObj = {};
+
+
 
                             var desc = $(this).find('input#element-description').each(function(i, element){
                               scope.newComponentElementsObj['description'] = $(this).val();
@@ -84,7 +91,7 @@ import { Components } from '../../../imports/api/components.js';
                       });
                   });
 
-                  scope.single.saveNewComponent(scope.newComponentElements);
+                  scope.single.saveNewComponent(scope.name, scope.newComponentElements);
                   scope.single.saveNewCreatedElements(scope.newElementsArr);
 
           });

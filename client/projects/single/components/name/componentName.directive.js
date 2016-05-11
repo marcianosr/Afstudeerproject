@@ -16,8 +16,6 @@ import { Projects } from '/imports/api/projects.js';
 
               $scope.editing = false;
 
-              console.log($stateParams)
-
               $scope.projects = Projects.findOne({ slug: $stateParams.slug });
 
               $scope.componentName = "Nameless Component";
@@ -25,7 +23,6 @@ import { Projects } from '/imports/api/projects.js';
 
               $scope.changeComponentName = function(name, componentId) {
 
-                  console.log($stateParams)
                   Meteor.call('changeComponentName', $scope.projects._id, componentId, name)
               }
 
@@ -35,7 +32,7 @@ import { Projects } from '/imports/api/projects.js';
 
               $scope.setNewComponentName = function(name, componentId) {
 
-                  // console.log(name)
+                  //  console.log(name)
                   // console.log(componentId)
                   //
                   $scope.changeComponentName(name, componentId)
