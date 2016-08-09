@@ -1,0 +1,27 @@
+<section class="col-xs-12 sign-in">
+
+    <section class="col-xs-6 col-offset-6 col-center sign-in-box">
+
+      <div ng-if="main.status == 'SUCCESS'">
+          <div class="alert alert-success">
+              <strong> Successfully signed in with Slack! </strong> You'll be redirected to project overview page.
+          </div>
+      </div>
+
+      <section ng-if="!main.checkAuth.$$state.value.name">
+          <div class="text-center" ng-if="!main.status">
+            <div class="logo"><img src="/assets/logo.png" width="30%" alt=""></div>
+            <div class="jumbotron">
+                <h1>Sign in with Slack</h1>
+            </div>
+            <a ng-click="" href="https://slack.com/oauth/authorize?scope=identity.basic,identity.avatar&client_id=2172671931.41998025923">
+              <img src="https://api.slack.com/img/sign_in_with_slack.png" />
+            </a>
+          </div>
+      </section>
+
+      <section ng-if="main.checkAuth.$$state.value.name">
+          <h3 class="text-center">You are currently logged in as {{main.checkAuth.$$state.value.name}}</h3>
+      </section>
+    </section>
+</section>

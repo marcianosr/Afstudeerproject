@@ -1,11 +1,27 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" ng-if="main.checkAuth.$$state.value">
     <div class="container">
       <div class="row">
-        <ul>
-          <li>
-            Logged in as <a href="/" ui-sref="create-project">User</a>
+        <ul class="clearfix">
+            <!-- {{main}} -->
+
+            <!-- {{main.checkAuth.$$state.value}} -->
+
+          <li class="navbar-left" ng-if="main.checkAuth.$$state.value"><a ui-sref="project-overview" ng-hide="main.currentUrl == '/project-overview'">Return to project overview</a></li>
+          <li ng-if="main.checkAuth.$$state.value" class="navbar-right">
+
+            <span> Signed in as  <img src="{{main.checkAuth.$$state.value.image_24}}" alt=""> {{main.checkAuth.$$state.value.name}} </span>
+          </li>
+          <li ng-if="main.checkAuth.$$state.value">
+           <!-- <a href="/" ng-click="main.signOut()">Sign out</a> -->
+          </li>
+          <li ng-if="!main.checkAuth.$$state.value" class="navbar-right">
+              <a ui-sref="sign-in"> Sign in </a>
           </li>
         </ul>
       </div>
     </div>
+
 </nav>
+<!-- current:
+{{main.currentUrl}}
+{{current}} -->

@@ -26,14 +26,28 @@ import capitalsPrototype from "../../../../main.js";
                   // set the index attribute with the new length of all the components on the screen
                   $("section.components").find('section.component').last().after(elements);
                   $("section.components").find('section.component').last().attr('index', allComponents)
-                  $("section.components").find('section.component').last().attr('component-name', 'Nameless Component')
+                  $("section.components").find('section.component').last().attr('component-name', 'Nameless Component');
+
 
                   // elements is the scope of the directive
                   elements.find($('.new-element')).find('button.new-element-button').click(function(){
                       var index = $(this).closest('section.component').attr('index');
                       scope.single.createNewElement(index)
 
+
                   });
+
+                  if (allComponents == 0) {
+                      $("section.components").find('search-bar').append(elements);
+                      $("section.components").find('section.component').last().attr('index', allComponents);
+
+                      elements.find($('.new-element')).find('button.new-element-button').click(function(){
+                          var index = $(this).closest('section.component').attr('index');
+                          scope.single.createNewElement(index)
+
+                      });
+
+                  }
 
             });
 

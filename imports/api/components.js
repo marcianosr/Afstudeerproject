@@ -37,8 +37,14 @@ Meteor.methods({
   updateElement: function(id, whatElement, whatValue, newElement, newValue){
     // console.log('update')
 
+
+
     if (whatElement === "description") {
       var updateComponent = Components.update({  _id: id, "elements": { $elemMatch: { "description": whatValue } }}, { $set: { "elements.$.description": newValue} });
+    }
+
+    if (whatElement === "type") {
+      var updateComponent = Components.update({  _id: id, "elements": { $elemMatch: { "type": whatValue } }}, { $set: { "elements.$.type": newValue} });
     }
 
     if (whatElement === "content") {

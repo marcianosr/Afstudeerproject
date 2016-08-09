@@ -1,8 +1,9 @@
-<section class="row single-project">
+<section class="row single-project" ng-if="main.checkAuth.$$state.value">
   <div class="col-xs-10 col-center">
 
-    <header class="clearfix">
-      <div class="col-xs-10">
+
+
+    <header class="main-header clearfix headroom headroom--pinned" headroom>
 
         <!-- {{single.components}} -->
 <!--
@@ -14,19 +15,27 @@
         <!-- {{single.elements}} -->
 
       <!-- {{single}} -->
+          <div class="meta-data clearfix">
 
-        <h1>{{single.projects.name}}</h1>
-        <span>Editing in language:</span>
-        <select name="languages" id="languages">
-          <option value="dutch">Dutch</option>
-          <option value="english">English</option>
-        </select>
-      </div>
+              <div class="container-info pull-left col-xs-8">
+                <h1 class="pull-left">{{single.projects.name}}</h1>
+                <div class="language-container col-xs-6 pull-left">
+                    <span>Editing in language:</span> <img width="30" src="/assets/Flags_PNG/{{single.projects.languages[0]}}.png" alt="">
+                    <select name="languages" id="languages">
+                          <option ng-repeat="language in single.projects.languages" value="{{language}}">{{language}}</option>
+                    </select>
+                </div>
+              </div>
 
-      <div class="col-xs-2 text-right">
-            <button class="save-project" save-updates ng-click="single.saveProject()">Save Project</button>
-            <p>Version 0.1</p>
-      </div>
+              <div class="save-container text-right pull-right clearfix col-xs-4">
+                    <button class="btn no-btn-radius save-project" save-updates ng-click="single.saveProject()">Save Project</button>
+                    <!-- <button class="btn no-btn-radius btn-danger" ng-click="single.cancel()">Cancel</button> -->
+                    <p>Version 0.1</p>
+              </div>
+
+          </div>
+
+
 
     </header>
     <section class="col-xs-12 components">
@@ -37,14 +46,23 @@
           <li role="presentation"><a href="#">Production</a></li>
         </ul>
       </nav>
-<!--
-      <div class="col-xs-12">
-        Search
-      </div> -->
+
+      <!-- SEARCH -->
+
+
+
+      <form class="" ng-hide="!single.components.length && single.allComponents == 0">
+          <search-bar components="single.components"></search-bar>
+      </form>
+
+    <!-- SEARCH -->
 
       <!-- {{single.components}} -->
+          <section ng-if="!single.components.length && single.allComponents == 0" class="col-xs-12">
+            <h3 class="text-center">No components here yet. Chief says: Chop, chop, create some!</h3>
+          </section>
 
-          <section class="component old-component col-xs-12" ng-repeat="component in single.components" index="{{$index}}" componentId="{{component._id}}">
+          <section class="component old-component col-xs-12" ng-if="single.components.length" ng-repeat="component in single.components" index="{{$index}}" componentId="{{component._id}}">
             <!-- {{$index}} -->
 
             <component-name name="{{component.name}}"></component-name>
@@ -56,17 +74,17 @@
             </form>
 
 
-            <div class="col-xs-6 new-element">
-              <button ng-click="single.createNewElement($index)">New element</button>
+            <div class="row col-xs-6 new-element">
+              <button class="btn no-btn-radius" ng-click="single.createNewElement($index)">New element</button>
             </div>
           </section>
 
 
-      <button class="col-xs-12 new-component" ng-click="single.createNewComponent()">New component</button>
+      <button class="col-xs-12 btn no-btn-radius new-component" ng-click="single.createNewComponent()">New component</button>
 
       <div class="row">
         <div class="col-xs-12">
-              <hr>
+              <!-- <hr> -->
         </div>
       </div>
 
@@ -75,4 +93,8 @@
     </section>
     <section ng-include="'client/projects/single/generators/generators.html'" class="generators col-xs-12"></section>
   </div>
+</section>
+
+<section ng-if="!main.checkAuth.$$state.value">
+    <h3 class="text-center"> You need to sign in to view this page. <a href="/sign-in"> Sign in </a></h3>
 </section>

@@ -1,0 +1,30 @@
+
+<div class="col-xs-3 search form-group">
+
+    <label for="">Component</label>
+
+    <select class="form-control" id="" ng-model="selectedComponent" ng-change="getSearch(selectedComponent)">
+
+        <option value="">All components</option>
+        <option ng-repeat="component in components" value="{{component.name}}">{{component.name}}</option>
+
+    </select>
+
+
+
+</div>
+
+<div class="col-xs-3 search form-group">
+    <label for="">Element Type</label>
+    <select class="form-control" id="">
+      <option value="">All element types</option>
+      <option value="button">Button</option>
+      <option value="small-textfield">Small textfield</option>
+    </select>
+</div>
+
+<div class="col-xs-4 search form-group">
+    <label for="">Content</label>
+    <input type="search" class="form-control" ng-model="search" placeholder="Search for content or element key">
+
+</div>

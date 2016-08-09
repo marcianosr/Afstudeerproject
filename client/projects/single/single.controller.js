@@ -6,15 +6,19 @@ import { Components } from '../../../imports/api/components.js';
 (function(){
 
   angular.module('capitals-prototype')
-  .controller('SingleProject', __singleProject);
+  .controller('SingleProject', ['$scope', '$reactive', '$compile', '$state', '$stateParams', __singleProject]);
 
   function __singleProject($scope, $reactive, $compile, $state, $stateParams) {
 
-      console.log('Controller Single project');
+      console.log('Controller Single project!');
       $reactive(this).attach($scope);
+
 
       this.subscribe('projects');
       this.subscribe('components');
+
+      this.allComponents = 0;
+
 
       this.saveProject = function() {
           $state.reload();
@@ -31,6 +35,7 @@ import { Components } from '../../../imports/api/components.js';
       this.createNewComponent = function() {
 
           console.log('create new component');
+          this.allComponents++;
 
           // use compile to include the directive via javascript onClick
           var component = $compile("<new-component></new-component>")($scope);
@@ -43,9 +48,15 @@ import { Components } from '../../../imports/api/components.js';
           console.log(names)
 
           if(newComponent != undefined) {
-            Meteor.call('insertComponent', this.getReactively('projectId'), names, newComponent);
+            Meteor.call('insertComponent', this.getReactively('projectId'), names, newComponent)
+            // Meteor.call('updateProject', this.getReactively('projectId'), localStorage.getItem('username'));
           }
 
+      }
+
+      this.cancel = function() {
+
+          $state.go('project-overview');
       }
 
       this.saveNewCreatedElements = function(element) {
@@ -53,8 +64,6 @@ import { Components } from '../../../imports/api/components.js';
           console.log('Service: Insert a new element')
           Meteor.call('insertElement', element);
       }
-
-
 
       this.helpers({
 
@@ -75,6 +84,8 @@ import { Components } from '../../../imports/api/components.js';
           // console.log(this.projectId)
 
             var components = Components.find({projectId: this.getReactively('projectId')});
+
+            console.log(components)
 
             if(components) {
               return components;

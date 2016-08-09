@@ -15,6 +15,8 @@ import { Projects } from '/imports/api/projects.js';
           controller: function($scope, $stateParams) {
 
               $scope.editing = false;
+              $scope.collapsed = false;
+
 
               $scope.projects = Projects.findOne({ slug: $stateParams.slug });
 
@@ -41,11 +43,40 @@ import { Projects } from '/imports/api/projects.js';
                   $scope.componentName = name;
 
               }
+
+              $scope.collapse = function() {
+                  return $scope.collapsed = !$scope.collapsed;
+              }
           },
           controllerAs: "changeComponentName",
           link: function(scope, elements, attrs) {
 
+
+            $('.component-nav').find('.fa-chevron-down').on('click', function(){
+
+                if(!scope.collapsed) {
+                  $(this).closest('section.component').find('fieldset').slideUp('fast');
+                  $(this).closest('section.component').find('.new-element').slideUp('fast');
+
+                  $(this).removeClass('fa-chevron-down');
+                  $(this).addClass('fa-chevron-right');
+
+                }
+                else {
+                  $(this).closest('section.component').find('fieldset').slideDown('fast');
+                  $(this).closest('section.component').find('.new-element').slideDown('fast');
+
+                  $(this).removeClass('fa-chevron-right');
+                  $(this).addClass('fa-chevron-down');
+
+                }
+
+                scope.collapse();
+
+            });
+
             scope.$watch(elements, function(){
+
                 $(elements).find($('.title')).on('click', function(e){
 
                     var componentId = $(elements).parent('section.component').attr('componentId');

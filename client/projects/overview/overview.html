@@ -1,36 +1,43 @@
-<section class="row projects">
+<section class="projects" ng-if="main.checkAuth.$$state.value">
   <div class="col-xs-10 col-center">
 
     <header>
-      <h1>Projects overview</h1>
-      <button class="btn btn-default text-right">Nieuw project</button>
+      <h1>Project overview</h1>
+      <button ui-sref="create-project" class="btn no-btn-radius text-right">Nieuw project</button>
     </header>
 
 
 
     <section ng-repeat="project in overview.projects" class="col-xs-6 no-padding-left">
-      <a href="single-project/{{project.slug}}">{{project.slug}}</a>
-      <div class="project col-xs-12 no-padding">
-        <div class="title">
-          <img width="80" height="80" src="http://placehold.it/80x80" alt="">
-          <h1>{{project.name}}</h1>
-        </div>
 
-        <div class="environments col-xs-6">
-          <h3>Development</h3>
-          <div class="span12">Version {{project.development[0].version}} </div>
-          <div class="span12">Last updated at: {{project.development[0].last_updated_at}} </div>
-          <div class="span12">Last updated by: {{project.development[0].last_updated_by}} </div>
-        </div>
+      <a href="single-project/{{project.slug}}">
+        <div class="project col-xs-12 no-padding">
+          <div class="title">
+            <img width="80" height="80" src="http://placehold.it/80x80" alt="">
+            <h2>{{project.name}}</h2>
+          </div>
 
-        <div class="environments col-xs-6">
-          <h3>Production</h3>
-          <div class="span12">Version {{project.production[0].version}} </div>
-          <div class="span12">Last updated at: {{project.production[0].last_updated_at}} </div>
-          <div class="span12">Last updated by: {{project.production[0].last_updated_by}} </div>
+          <div class="environments col-xs-6">
+            <h3>Development</h3>
+            <div class="span12">Version {{project.development[0].version}} </div>
+            <div class="span12">Last updated at: {{project.development[0].last_updated_at}} </div>
+            <div class="span12">Last updated by: {{project.development[0].last_updated_by}} </div>
+          </div>
+
+          <div class="environments col-xs-6">
+            <h3>Production</h3>
+            <div class="span12">Version {{project.production[0].version}} </div>
+            <div class="span12">Last updated at: {{project.production[0].last_updated_at}} </div>
+            <div class="span12">Last updated by: {{project.production[0].last_updated_by}} </div>
+          </div>
         </div>
-        </div>
+      </a>
 
     </section>
+
   </div>
+</section>
+
+<section ng-if="!main.checkAuth.$$state.value">
+    <h3 class="text-center"> You need to sign in to view this page. <a href="/sign-in"> Sign in </a></h3>
 </section>

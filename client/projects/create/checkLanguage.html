@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label for="name">Select the required languages *</label>
+  <div class="row">
+    <div class="col-xs-2" ng-repeat="language in newProject.languages">
+      <img src="{{language.image}}" width="80%" alt="">
+      <p>{{language.name}}</p>
+      <input type="checkbox" id="language" class="language" name="lang" ng-model="project.language[language.name]" ng-change="newProject.getSelectedLanguage(project)">
+        <!-- {{project.language}} -->
+        <!-- {{selectedLang}}
+
+        {{language}} -->
+
+
+
+
+        <!-- {{project}} -->
+    </div>
+
+
+    <div class="col-xs-12">
+      <a href="/">Show more languages</a>
+    </div>
+
+  </div>
+
+  <p ng-show="newProject.selected == 0 && !newProject.pristine" class="validation error">Select atleast one language for your project.</p>
+
+</div>

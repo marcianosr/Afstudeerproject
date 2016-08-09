@@ -11,7 +11,7 @@ import { Projects } from '/imports/api/projects.js';
           removeEl: "&",
           pending: "=",
         },
-        controller: function($scope, $reactive, $stateParams) {
+        controller: ['$scope', '$reactive', '$stateParams', function($scope, $reactive, $stateParams) {
 
             $scope.removeElement = function(elements) {
 
@@ -31,7 +31,7 @@ import { Projects } from '/imports/api/projects.js';
 
 
             }
-        },
+        }],
         // controller: "SingleProject",
         // controllerAs: "single",
         templateUrl: 'client/projects/single/components/elements/remove/removeElement.html',
@@ -43,7 +43,7 @@ import { Projects } from '/imports/api/projects.js';
               /*
               * BEWARE: Multiple of the same values can still be deleted at once
               */
-              var inputs = $(this).closest('.form-group').find('input');
+              var inputs = $(this).closest('.form-group').find('input, select');
 
               if (scope.pending) {
                 inputs.removeClass('pending-removal')
@@ -54,7 +54,7 @@ import { Projects } from '/imports/api/projects.js';
 
               var elements = [];
 
-              var getElements = $(this).closest('.form-group').find('input').each(function(){
+              var getElements = $(this).closest('.form-group').find('input, select').each(function(){
 
                   elements.push($(this).val());
                   return elements;

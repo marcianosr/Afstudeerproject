@@ -5,7 +5,7 @@ import { Projects } from '../../../imports/api/projects.js';
 (function(){
 
   angular.module('capitals-prototype')
-  .controller('ProjectOverview', __projectOverview);
+  .controller('ProjectOverview', ['$scope', '$reactive', __projectOverview]);
 
   function __projectOverview($scope, $reactive) {
 

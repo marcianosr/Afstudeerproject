@@ -7,9 +7,7 @@ import capitalsPrototype from "../../../../main.js";
     return {
         restrict: 'A',
         require: 'ngModel',
-        controller: function($scope) {
 
-        },
         link: function(scope, elements, attrs, ngModel) {
 
             elements.bind('change', function(){

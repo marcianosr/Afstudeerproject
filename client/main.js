@@ -3,19 +3,23 @@ import angularMeteor from 'angular-meteor';
 import uiRouter from 'angular-ui-router';
 
 
+
+
+
 (function(){
 
   angular.module('capitals-prototype', [
     angularMeteor,
     uiRouter,
-  ]).config(config);
+
+  ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', config]).run(run);
 
 
-  console.log('init The Capitals Prototype app!');
+  console.log('init The Capitals Prototype app!!!');
+
 
   function config($stateProvider, $urlRouterProvider, $locationProvider) {
-      console.log('Config')
-      console.log($stateProvider)
+
       $stateProvider
         .state('project-overview', {
             url: '/project-overview',
@@ -25,7 +29,9 @@ import uiRouter from 'angular-ui-router';
         })
         .state('create-project', {
             url: '/create-project',
-            templateUrl: 'client/projects/create/create.html'
+            templateUrl: 'client/projects/create/create.html',
+            controller: 'CreateProject',
+            controllerAs: 'newProject'
         })
         .state('single-project/:slug', {
             url: '/single-project/:slug',
@@ -33,10 +39,20 @@ import uiRouter from 'angular-ui-router';
             controller: 'SingleProject',
             controllerAs: 'single'
         })
+        .state('sign-in', {
+            url: '/sign-in',
+            templateUrl: 'client/users/signin/signin.html',
+
+        })
 
         $locationProvider.html5Mode(true);
 
         //  $urlRouterProvider.otherwise("/404");
+  }
+
+
+  function run() {
+      console.log('run')
   }
 
 
